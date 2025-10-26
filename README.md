@@ -3,7 +3,7 @@
 Fashion MNIST Classification Web App
 
 A Streamlit web application for image classification using CNN and Transfer Learning models on the Fashion MNIST dataset.
-Supports Simple CNN, VGG16, ResNet50, MobileNetV2 models.
+Supports Simple CNN, VGG16, MobileNetV2 models.
 
 Features
 
@@ -22,7 +22,5 @@ Models
 Simple CNN – Lightweight CNN for 28x28 grayscale images.
 
 VGG16 – Transfer learning, input resized to 32x32, 3 channels.
-
-ResNet50 – Transfer learning, input resized to 48x48, 3 channels.
 
 MobileNetV2 – Transfer learning, input resized to 32x32, 3 channels (train with 96x96).
