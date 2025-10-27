@@ -22,12 +22,12 @@ x_test_display = np.expand_dims(x_test_display, axis=-1)
 model = load_model("models/fashion_mobilenetv2.h5")
 
 # --- ทำนายภาพแบบสุ่ม ---
-st.subheader("🎲 ทำนายภาพแบบสุ่มจากชุดทดสอบ")
+st.subheader("ทำนายภาพแบบสุ่มจากชุดทดสอบ")
 if st.button("สุ่มภาพ"):
     predict_and_plot_random(model, x_test, y_test, class_names, target_size=(96,96), channels=3)
 
 # --- อัปโหลดภาพเพื่อทำนาย ---
-st.subheader("📤 อัพโหลดภาพเพื่อทำนาย")
+st.subheader("อัพโหลดภาพเพื่อทำนาย")
 uploaded = st.file_uploader("อัพโหลดรูปภาพ (.jpg, .png, .jpeg)", type=["jpg","png","jpeg"])
 if uploaded:
     # โหลดและเตรียมภาพให้ตรงกับ input ของ MobileNetV2 (32x32, 3 channels)
@@ -48,10 +48,13 @@ if uploaded:
     plot_prediction_bar(predictions, class_names)
 
 # --- กราฟหลังเทรนโมเดล ---
-st.subheader("📈 กราฟหลังเทรนโมเดล")
+st.subheader("กราฟหลังเทรนโมเดล")
 st.image("assets/MobileNetV2_accuracy_loss.png")
+st.subheader("Confusion Matrix")
 st.image("assets/MobileNetV2_confusion_matrix.png")
+st.subheader("Classification Report")
 st.image("assets/MobileNetV2_classification_report.png")
+st.subheader("Precision, Recall และ F1-Score")
 st.image("assets/MobileNetV2_Precision_Recall_F1.png")
 # --- ตัวอย่างโค้ดเทรนโมเดล ---
 st.subheader("💻 ตัวอย่างโค้ดเทรนโมเดล")

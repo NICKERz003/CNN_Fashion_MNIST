@@ -23,12 +23,12 @@ x_test = np.expand_dims(x_test, axis=-1)
 model = load_model("models/fashion_mnist_cnn_model_robust.h5")
 
 # 🔹 ทำนายภาพแบบสุ่ม
-st.subheader("🎲 ทำนายภาพแบบสุ่มจากชุดทดสอบ")
+st.subheader("ทำนายภาพแบบสุ่มจากชุดทดสอบ")
 if st.button("สุ่มภาพ"):
     predict_and_plot_random(model, x_test, y_test, class_names)
 
 # 🔹 อัปโหลดภาพเพื่อทำนาย
-st.subheader("📤 อัพโหลดภาพเพื่อทำนาย")
+st.subheader("อัพโหลดภาพเพื่อทำนาย")
 uploaded = st.file_uploader("อัพโหลดรูปภาพ (.jpg, .png, .jpeg)", type=["jpg","png","jpeg"])
 if uploaded:
     # โหลดและเตรียมภาพ
@@ -49,9 +49,11 @@ if uploaded:
     plot_prediction_bar(predictions, class_names)
 
 # 🔹 กราฟหลังเทรนโมเดล
-st.subheader("📈 กราฟหลังเทรนโมเดล")
+st.subheader("กราฟหลังเทรนโมเดล")
 st.image("assets/cnn_robust_accuracy_loss.png")
+st.subheader("Confusion Matrix")
 st.image("assets/cnn_robust_confusion_matrix.png")
+st.subheader("Classification Report")
 st.image("assets/cnn_robust_classification_report.png")
 
 # 🔹 ตัวอย่างโค้ดเทรนโมเดล
@@ -65,7 +67,7 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropou
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.preprocessing.image import ImageDataGenerator # เพิ่มไลบรารีนี้
 
-# --- 1. การเตรียมข้อมูล (เหมือนเดิม) ---
+#1.เตรียมข้อมูล
 (x_train, y_train), (x_test, y_test) = fashion_mnist.load_data()
 
 class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
@@ -81,8 +83,7 @@ y_train = to_categorical(y_train, num_classes=10)
 y_test = to_categorical(y_test, num_classes=10)
 
 
-# --- 2. การปรับปรุงโครงสร้างโมเดล (เพิ่ม BN และ Dropout) ---
-print("--- สร้างโมเดล CNN ใหม่พร้อม BatchNormalization และ Dropout ---")
+#2.ปรับปรุงโครงสร้างโมเดล (เพิ่ม BN และ Dropout)
 model = Sequential([
     # Convolutional Block 1
     Conv2D(32, (3, 3), padding='same', activation='relu', input_shape=(28, 28, 1)),
@@ -103,14 +104,13 @@ model = Sequential([
 ])
 model.summary()
 
-# Compile Model (เหมือนเดิม)
+# Compile Model
 model.compile(optimizer='adam',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
 
-# --- 3. การเทรนด้วย Data Augmentation ---
-print("--- เริ่มการเทรนด้วย Data Augmentation ---")
+#3.เทรนด้วย Data Augmentation
 
 # กำหนด Augmentation
 datagen = ImageDataGenerator(

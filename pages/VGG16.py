@@ -24,12 +24,12 @@ x_test_display = np.expand_dims(x_test_display, axis=-1)
 model = load_model("models/fashion_mnist_vgg16_transfer_30E.h5")
 
 # --- ทำนายภาพแบบสุ่ม ---
-st.subheader("🎲 ทำนายภาพแบบสุ่มจากชุดทดสอบ")
+st.subheader("ทำนายภาพแบบสุ่มจากชุดทดสอบ")
 if st.button("สุ่มภาพ"):
     predict_and_plot_random(model, x_test, y_test, class_names, target_size=(32,32), channels=3)
 
 # --- อัปโหลดภาพเพื่อทำนาย ---
-st.subheader("📤 อัพโหลดภาพเพื่อทำนาย")
+st.subheader("อัพโหลดภาพเพื่อทำนาย")
 uploaded = st.file_uploader("อัพโหลดรูปภาพ (.jpg, .png, .jpeg)", type=["jpg","png","jpeg"])
 if uploaded:
     # โหลดและเตรียมภาพให้ตรงกับ input ของ VGG16 (32x32, 3 channels)
@@ -50,9 +50,11 @@ if uploaded:
     plot_prediction_bar(predictions, class_names)
 
 # --- กราฟหลังเทรนโมเดล ---
-st.subheader("📈 กราฟหลังเทรนโมเดล")
+st.subheader("กราฟหลังเทรนโมเดล")
 st.image("assets/vgg16_accuracy_loss.png")
+st.subheader("Confusion Matrix")
 st.image("assets/vgg16_confusion_matrix.png")
+st.subheader("Classification Report")
 st.image("assets/vgg16_classification_report.png")
 
 # --- ตัวอย่างโค้ดเทรนโมเดล ---

@@ -57,18 +57,20 @@ def predict_and_plot_random(model, x_test, y_test, class_names, target_size=(28,
     st.image(img_resized, caption=f"Predict: {predicted_class_name} | True: {true_name} | Probability: {acc:.2f}%", width=200)
 
     # แสดง bar plot
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(8,5))
     sns.barplot(x=class_names, y=predictions[0], palette="viridis")
     plt.xticks(rotation=45)
+    plt.ylim(0, 1.05)
     plt.ylabel("Probability")
     plt.title("Prediction Confidence")
     st.pyplot(fig)
 
 # --- แสดง bar plot ของ prediction ---
 def plot_prediction_bar(predictions, class_names):
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(8,5))
     sns.barplot(x=class_names, y=predictions[0], palette="viridis")
     plt.xticks(rotation=45)
+    plt.ylim(0, 1.05)
     plt.ylabel("Probability")
     plt.title("Prediction Confidence")
     st.pyplot(fig)
