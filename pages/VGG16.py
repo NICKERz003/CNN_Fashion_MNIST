@@ -21,7 +21,7 @@ x_test_display = x_test / 255.0
 x_test_display = np.expand_dims(x_test_display, axis=-1)
 
 # --- โหลดโมเดล ---
-model = load_model("models/fashion_mnist_vgg16_transfer_30E.h5", compile=False,safe_mode=False)
+model = load_model("models/fashion_mnist_vgg16_transfer_30E.h5", compile=False)
 model.build(input_shape=(None, 32, 32, 3))
 # --- ทำนายภาพแบบสุ่ม ---
 st.subheader("ทำนายภาพแบบสุ่มจากชุดทดสอบ")
