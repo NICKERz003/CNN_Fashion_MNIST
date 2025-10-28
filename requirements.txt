@@ -6,4 +6,3 @@ seaborn
 pillow
 scikit-learn
 opencv-python-headless
-protobuf==3.20.*
