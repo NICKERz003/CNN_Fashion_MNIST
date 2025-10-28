@@ -12,7 +12,7 @@ import os
 # เพิ่ม path ของโฟลเดอร์ utils ให้ Python หาเจอ
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'utils'))
 
-from utils.helpers import load_and_prep_image, predict_and_plot_random, plot_predictio
+from helpers import load_and_prep_image, predict_and_plot_random, plot_predictio
 
 st.title("VGG16")
 
