@@ -1,8 +1,8 @@
-streamlit==1.28.0
-tensorflow==2.14.0
-numpy==1.25.0
-matplotlib==3.8.0
-seaborn==0.12.2
-pillow==10.0.0
-scikit-learn==1.3.0
-opencv-python==4.9.0.74
+streamlit
+tensorflow
+numpy
+matplotlib
+seaborn
+pillow
+scikit-learn
+opencv-python
