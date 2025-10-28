@@ -21,8 +21,8 @@ x_test_display = x_test / 255.0
 x_test_display = np.expand_dims(x_test_display, axis=-1)
 
 # --- โหลดโมเดล ---
-model = load_model("models/fashion_mnist_vgg16_transfer_30E.h5")
-
+model = load_model("models/fashion_mnist_vgg16_transfer_30E.h5", compile=False,safe_mode=False)
+model.build(input_shape=(None, 32, 32, 3))
 # --- ทำนายภาพแบบสุ่ม ---
 st.subheader("ทำนายภาพแบบสุ่มจากชุดทดสอบ")
 if st.button("สุ่มภาพ"):
@@ -34,7 +34,7 @@ uploaded = st.file_uploader("อัพโหลดรูปภาพ (.jpg, .png
 if uploaded:
     # โหลดและเตรียมภาพให้ตรงกับ input ของ VGG16 (32x32, 3 channels)
     img_arr = load_and_prep_image(uploaded, target_size=(32,32), channels=3)
-    image = Image.open(uploaded).convert("L").resize((32,32))
+    image = Image.open(uploaded).convert("RGB").resize((32,32))
     st.image(image, caption='รูปภาพที่ปรับปรุงแล้ว (32x32 3 channels)', width=150)
 
     # --- ทำนายผล ---
