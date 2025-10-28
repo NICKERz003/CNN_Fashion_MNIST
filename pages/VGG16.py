@@ -2,11 +2,12 @@ import streamlit as st
 import numpy as np
 from tensorflow.keras.datasets import fashion_mnist
 from tensorflow.keras.applications import VGG16
-from tensorflow.keras.models import load_model
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Flatten, Dense, Dropout
 from PIL import Image
 import matplotlib.pyplot as plt
 import seaborn as sns
-from utils.helpers import load_and_prep_image, predict_and_plot_random, plot_prediction_bar
+from utils.helpers import load_and_prep_image, predict_and_plot_random, plot_predictio
 
 st.title("VGG16")
 
@@ -21,9 +22,24 @@ class_names = [
 x_test_display = x_test / 255.0
 x_test_display = np.expand_dims(x_test_display, axis=-1)
 
-# --- โหลดโมเดล ---
-model = load_model("models/fashion_mnist_vgg16_transfer_30E.h5", compile=False,custom_objects={'VGG16': VGG16})
-model.build(input_shape=(None, 32, 32, 3))
+# --- สร้างโมเดล architecture ใหม่เหมือนตอนเทรน ---
+TARGET_SIZE = (32, 32)
+NUM_CLASSES = 10
+
+vgg_base = VGG16(weights='imagenet', include_top=False, input_shape=(TARGET_SIZE[0], TARGET_SIZE[1], 3))
+for layer in vgg_base.layers:
+    layer.trainable = False
+
+model = Sequential([
+    vgg_base,
+    Flatten(),
+    Dense(256, activation='relu'),
+    Dropout(0.5),
+    Dense(NUM_CLASSES, activation='softmax')
+])
+
+# --- โหลด weights ที่เราเทรนมา ---
+model.load_weights("models/fashion_mnist_vgg16_transfer_30E.h5")
 # --- ทำนายภาพแบบสุ่ม ---
 st.subheader("ทำนายภาพแบบสุ่มจากชุดทดสอบ")
 if st.button("สุ่มภาพ"):
