@@ -1,8 +1,9 @@
 streamlit
-tensorflow
+tensorflow-cpu==2.14.0
 numpy
 matplotlib
 seaborn
 pillow
 scikit-learn
-opencv-python
+opencv-python-headless
+protobuf==3.20.3
