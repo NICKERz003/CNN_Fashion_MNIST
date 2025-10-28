@@ -39,7 +39,7 @@ model = Sequential([
 ])
 
 # --- โหลด weights ที่เราเทรนมา ---
-model.load_weights("models/fashion_mnist_vgg16_transfer_30E.h5")
+model.load_weights("models/fashion_mnist_vgg16_transfer.weights.h5")
 # --- ทำนายภาพแบบสุ่ม ---
 st.subheader("ทำนายภาพแบบสุ่มจากชุดทดสอบ")
 if st.button("สุ่มภาพ"):
