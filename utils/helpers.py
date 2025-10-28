@@ -7,7 +7,7 @@ import cv2
 import random
 
 # --- โหลดและเตรียมภาพสำหรับทุกโมเดล ---
-def load_and_prep_image(uploaded_file, target_size=(28,28), channels=1):
+def load_and_prep_image(uploaded_file, target_size=(32,32), channels=1):
     """
     uploaded_file : ไฟล์รูปภาพจาก uploader
     target_size   : ขนาดที่ต้องการ (width, height)
