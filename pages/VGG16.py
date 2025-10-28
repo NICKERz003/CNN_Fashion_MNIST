@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 from tensorflow.keras.datasets import fashion_mnist
+from tensorflow.keras.applications import VGG16
 from tensorflow.keras.models import load_model
 from PIL import Image
 import matplotlib.pyplot as plt
@@ -21,7 +22,7 @@ x_test_display = x_test / 255.0
 x_test_display = np.expand_dims(x_test_display, axis=-1)
 
 # --- โหลดโมเดล ---
-model = load_model("models/fashion_mnist_vgg16_transfer_30E.h5", compile=False)
+model = load_model("models/fashion_mnist_vgg16_transfer_30E.h5", compile=False,custom_objects={'VGG16': VGG16})
 model.build(input_shape=(None, 32, 32, 3))
 # --- ทำนายภาพแบบสุ่ม ---
 st.subheader("ทำนายภาพแบบสุ่มจากชุดทดสอบ")
