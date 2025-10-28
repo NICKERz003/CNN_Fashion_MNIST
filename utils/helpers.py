@@ -6,6 +6,7 @@ import streamlit as st
 import cv2
 import random
 
+
 # --- โหลดและเตรียมภาพสำหรับทุกโมเดล ---
 def load_and_prep_image(uploaded_file, target_size=(32,32), channels=1):
     """
